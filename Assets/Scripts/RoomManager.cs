@@ -17,7 +17,7 @@ public class RoomManager : MonoBehaviour
     private int[,] roomGrid;
     [SerializeField] private int roomCount;
     [SerializeField] private int maxRooms = 15;
-    [SerializeField] private int minRooms = 7;
+    [SerializeField] private int minRooms = 5;
 
     private Queue<Vector2Int> roomQueue = new Queue<Vector2Int>();
 
