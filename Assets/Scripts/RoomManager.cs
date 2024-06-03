@@ -5,8 +5,8 @@ public class RoomManager : MonoBehaviour
 {
     [SerializeField] GameObject roomPrefab;
 
-    int roomWidth = 20;
-    int roomHeight = 12;
+    int roomWidth = 16;
+    int roomHeight = 9;
     int gridSizeX = 10;
     int gridSizeY = 10;
 
@@ -124,14 +124,15 @@ public class RoomManager : MonoBehaviour
         newRoom.name = $"Room-{roomCount}";
         roomObjects.Add(newRoom);
 
+       
         OpenDoors(newRoom, x, y);
 
         return true;
     }
 
-    void OpenDoors(GameObject newRoom, int x, int y)
+    void OpenDoors(GameObject room, int x, int y)
     {
-        Room newRoomScript = newRoom.GetComponent<Room>();
+        Room newRoomScript = room.GetComponent<Room>() ;
 
         Room leftRoomScript = GetRoomScriptAt(new Vector2Int(x - 1, y));
         Room rightRoomScript = GetRoomScriptAt(new Vector2Int(x + 1, y));

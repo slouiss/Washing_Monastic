@@ -15,19 +15,19 @@ public class Room : MonoBehaviour
     public void OpenDoor(Vector2Int direction){
 
         if(direction == Vector2.up){
-            topDoor.SetActive(true);
+            topDoor.SetActive(false);
         }
 
         if(direction == Vector2.down){
-            bottomDoor.SetActive(true);
+            bottomDoor.SetActive(false);
         }
 
         if(direction == Vector2.left){
-            leftDoor.SetActive(true);
+            leftDoor.SetActive(false);
         }
 
         if(direction == Vector2.right){
-            rightDoor.SetActive(true);
+            rightDoor.SetActive(false);
         }
     }
 }
