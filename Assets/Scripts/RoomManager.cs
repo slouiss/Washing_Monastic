@@ -5,7 +5,7 @@ public class RoomManager : MonoBehaviour
 {
     [SerializeField] GameObject roomPrefab;
 
-    int roomWidth = 16;
+    float roomWidth = 17.2F;
     int roomHeight = 9;
     int gridSizeX = 10;
     int gridSizeY = 10;
