@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RoomManager : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class RoomManager : MonoBehaviour
     [SerializeField] private int minRooms = 7;
 
     private Queue<Vector2Int> roomQueue = new Queue<Vector2Int>();
+
+    public UnityEvent OnGenerationComplete;
 
     private void Start()
     {
@@ -57,6 +60,7 @@ public class RoomManager : MonoBehaviour
             Debug.Log($"Generation complete, {roomCount} rooms.");
             IdentifyAndMarkBossRoom();
             generationComplete = true;
+            OnGenerationComplete?.Invoke();
         }
     }
 
