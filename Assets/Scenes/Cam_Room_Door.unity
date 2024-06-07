@@ -247,6 +247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomPrefab: {fileID: 389590901894644955, guid: 0bd9ce486252aa84da96769cc286969a, type: 3}
+  bossRoomMaterial: {fileID: 2100000, guid: 7f02acc680eeebb4ba0df92560c9c42d, type: 2}
   roomCount: 0
   maxRooms: 20
   minRooms: 12
