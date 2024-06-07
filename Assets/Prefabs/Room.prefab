@@ -1814,8 +1814,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4392492869498707245}
   - component: {fileID: 2819725734266129916}
-  - component: {fileID: 1357773980833784494}
-  - component: {fileID: 793805020916860542}
+  - component: {fileID: 5560931913949958248}
   m_Layer: 0
   m_Name: TriggerTop
   m_TagString: TriggerLine
@@ -1890,7 +1889,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &1357773980833784494
+--- !u!61 &5560931913949958248
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1919,7 +1918,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1933,22 +1932,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.0001}
   m_EdgeRadius: 0
---- !u!114 &793805020916860542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7420141624257983920}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9b8a2ac5e3971044a29ac9aa970d23d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  down: 9
-  cameraTag: MainCamera
 --- !u!1 &8750286362109428967
 GameObject:
   m_ObjectHideFlags: 0
