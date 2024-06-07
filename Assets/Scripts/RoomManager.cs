@@ -4,6 +4,7 @@ using UnityEngine;
 public class RoomManager : MonoBehaviour
 {
     [SerializeField] GameObject roomPrefab;
+    [SerializeField] Material bossRoomMaterial; // Material for boss room walls
 
     float roomWidth = 17.2F;
     int roomHeight = 9;
@@ -25,7 +26,7 @@ public class RoomManager : MonoBehaviour
     {
         roomGrid = new int[gridSizeX, gridSizeY];
         roomQueue = new Queue<Vector2Int>();
-        
+
         Vector2Int initialRoomIndex = new Vector2Int(gridSizeX / 2, gridSizeY / 2);
         StartRoomGenerationFromRoom(initialRoomIndex);
     }
@@ -54,6 +55,7 @@ public class RoomManager : MonoBehaviour
         else if (!generationComplete)
         {
             Debug.Log($"Generation complete, {roomCount} rooms.");
+            IdentifyAndMarkBossRoom();
             generationComplete = true;
         }
     }
@@ -68,7 +70,6 @@ public class RoomManager : MonoBehaviour
         roomCount = 0;
         generationComplete = false;
 
-        
         Vector2Int initialRoomIndex = new Vector2Int(gridSizeX / 2, gridSizeY / 2);
         StartRoomGenerationFromRoom(initialRoomIndex);
     }
@@ -124,25 +125,55 @@ public class RoomManager : MonoBehaviour
         newRoom.name = $"Room-{roomCount}";
         roomObjects.Add(newRoom);
 
-       
         OpenDoors(newRoom, x, y);
 
         return true;
     }
 
+    private void IdentifyAndMarkBossRoom()
+    {
+        List<GameObject> potentialBossRooms = new List<GameObject>();
+
+        foreach (var room in roomObjects)
+        {
+            var roomScript = room.GetComponent<Room>();
+            if (roomScript != null)
+            {
+                Vector2Int roomIndex = roomScript.RoomIndex;
+                if (CountAdjacentRooms(roomIndex) == 1)
+                {
+                    potentialBossRooms.Add(room);
+                }
+            }
+        }
+
+        if (potentialBossRooms.Count > 0)
+        {
+            GameObject bossRoom = potentialBossRooms[Random.Range(0, potentialBossRooms.Count)];
+            bossRoom.tag = "RoomBoss";
+
+            // Change the color of the boss room's walls
+            var walls = bossRoom.GetComponentsInChildren<Renderer>();
+            foreach (var wall in walls)
+            {
+                wall.material = bossRoomMaterial;
+            }
+
+            Debug.Log("Boss room marked at: " + bossRoom.GetComponent<Room>().RoomIndex);
+        }
+    }
+
     void OpenDoors(GameObject room, int x, int y)
     {
-        Room newRoomScript = room.GetComponent<Room>() ;
+        Room newRoomScript = room.GetComponent<Room>();
 
         Room leftRoomScript = GetRoomScriptAt(new Vector2Int(x - 1, y));
         Room rightRoomScript = GetRoomScriptAt(new Vector2Int(x + 1, y));
         Room topRoomScript = GetRoomScriptAt(new Vector2Int(x, y + 1));
         Room bottomRoomScript = GetRoomScriptAt(new Vector2Int(x, y - 1));
 
-        
         if (x > 0 && roomGrid[x - 1, y] != 0)
         {
-            
             newRoomScript.OpenDoor(Vector2Int.left);
             leftRoomScript.OpenDoor(Vector2Int.right);
         }
@@ -183,6 +214,7 @@ public class RoomManager : MonoBehaviour
         var initialRoom = Instantiate(roomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
         initialRoom.name = $"Room-{roomCount}";
         initialRoom.GetComponent<Room>().RoomIndex = roomIndex;
+        initialRoom.tag = "SpawnRoom"; // Tag the initial room as "SpawnRoom"
         roomObjects.Add(initialRoom);
     }
 

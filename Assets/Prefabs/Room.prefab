@@ -1037,7 +1037,7 @@ GameObject:
   - component: {fileID: 5339080838407153912}
   m_Layer: 0
   m_Name: TriggerRight
-  m_TagString: TriggerLineRight
+  m_TagString: TriggerLine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1297,7 +1297,7 @@ GameObject:
   - component: {fileID: 7058913555094380288}
   m_Layer: 0
   m_Name: TriggerLeft
-  m_TagString: TriggerLineLeft
+  m_TagString: TriggerLine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1427,7 +1427,7 @@ GameObject:
   - component: {fileID: 8951357396717091962}
   m_Layer: 0
   m_Name: TriggerBottom
-  m_TagString: TriggerLineBot
+  m_TagString: TriggerLine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1818,7 +1818,7 @@ GameObject:
   - component: {fileID: 793805020916860542}
   m_Layer: 0
   m_Name: TriggerTop
-  m_TagString: TriggerLineTop
+  m_TagString: TriggerLine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
