@@ -140,7 +140,7 @@ public class RoomManager : MonoBehaviour
             if (roomScript != null)
             {
                 Vector2Int roomIndex = roomScript.RoomIndex;
-                if (CountAdjacentRooms(roomIndex) == 1)
+                if (CountAdjacentRooms(roomIndex) == 1 && roomIndex != new Vector2Int(gridSizeX / 2, gridSizeY / 2))
                 {
                     potentialBossRooms.Add(room);
                 }
