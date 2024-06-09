@@ -5,7 +5,9 @@ using UnityEngine.Events;
 public class RoomManager : MonoBehaviour
 {
     [SerializeField] GameObject roomPrefab;
+    [SerializeField] GameObject monsterPrefab; // Monster prefab
     [SerializeField] Material bossRoomMaterial; // Material for boss room walls
+    [SerializeField] private int maxMonstersPerRoom = 5; // Maximum number of monsters per room
 
     float roomWidth = 17.2F;
     int roomHeight = 9;
@@ -131,6 +133,13 @@ public class RoomManager : MonoBehaviour
 
         OpenDoors(newRoom, x, y);
 
+        // Generate monsters in the room
+        int monsterCount = Random.Range(1, maxMonstersPerRoom + 1);
+        for (int i = 0; i < monsterCount; i++)
+        {
+            InstantiateMonster(newRoom.transform);
+        }
+
         return true;
     }
 
@@ -221,6 +230,24 @@ public class RoomManager : MonoBehaviour
         initialRoom.tag = "SpawnRoom"; // Tag the initial room as "SpawnRoom"
         roomObjects.Add(initialRoom);
     }
+
+    private void InstantiateMonster(Transform roomTransform)
+{
+    // Get the boundaries of the room for random position generation
+    float roomWidth = 17.2f;
+    float roomHeight = 9f;
+    float wallThickness = 1f;
+
+    Vector3 randomPosition = new Vector3(
+        Random.Range(-roomWidth / 2 + wallThickness, roomWidth / 2 - wallThickness),
+        Random.Range(-roomHeight / 2 + wallThickness, roomHeight / 2 - wallThickness),
+        0);
+
+    // Instantiate the monster as a child of the room
+    var monster = Instantiate(monsterPrefab, roomTransform);
+    monster.transform.localPosition = randomPosition;
+}
+
 
     private void OnDrawGizmos()
     {

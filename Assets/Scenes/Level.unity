@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -247,7 +247,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomPrefab: {fileID: 389590901894644955, guid: 0bd9ce486252aa84da96769cc286969a, type: 3}
+  monsterPrefab: {fileID: 144859505849466584, guid: 6421bb74d241b164facacea8c2ed6be7, type: 3}
   bossRoomMaterial: {fileID: 2100000, guid: 7f02acc680eeebb4ba0df92560c9c42d, type: 2}
+  maxMonstersPerRoom: 5
   roomCount: 0
   maxRooms: 20
   minRooms: 12

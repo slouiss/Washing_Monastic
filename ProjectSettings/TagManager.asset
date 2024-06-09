@@ -7,6 +7,8 @@ TagManager:
   - TriggerLine
   - RoomBoss
   - SpawnRoom
+  - Monster
+  - Mob
   layers:
   - Default
   - TransparentFX
