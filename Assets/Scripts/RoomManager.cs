@@ -7,7 +7,7 @@ public class RoomManager : MonoBehaviour
     [SerializeField] GameObject roomPrefab;
     [SerializeField] Material bossRoomMaterial; // Material for boss room walls
 
-    float roomWidth = 17.2F;
+    float roomWidth = 17F;
     int roomHeight = 9;
     int gridSizeX = 10;
     int gridSizeY = 10;
