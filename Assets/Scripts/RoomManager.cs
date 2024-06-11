@@ -9,7 +9,7 @@ public class RoomManager : MonoBehaviour
     [SerializeField] Material bossRoomMaterial; // Material for boss room walls
     [SerializeField] private int maxMonstersPerRoom = 5; // Maximum number of monsters per room
 
-    float roomWidth = 17.2F;
+    float roomWidth = 17F;
     int roomHeight = 9;
     int gridSizeX = 10;
     int gridSizeY = 10;
