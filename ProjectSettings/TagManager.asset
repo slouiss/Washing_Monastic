@@ -4,18 +4,16 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Door_t
+  - Door_l
+  - Door_r
   - TriggerLine
+  - Monster
   - RoomBoss
   - SpawnRoom
-<<<<<<< HEAD
-  - Monster
-  - Mob
-=======
-  - Door_l
-  - Door_t
-  - Door_r
-  - Door_d
->>>>>>> Textures
+  - WallTilemap
+  - GroundTilemap
+  - Door_b
   layers:
   - Default
   - TransparentFX
@@ -54,8 +52,11 @@ TagManager:
     uniqueID: 0
     locked: 0
   - name: Ground
-    uniqueID: 1935519549
+    uniqueID: 2628184077
     locked: 0
-  - name: Player
-    uniqueID: 1086249577
+  - name: Room
+    uniqueID: 1302450947
+    locked: 0
+  - name: Entity
+    uniqueID: 3843483223
     locked: 0
