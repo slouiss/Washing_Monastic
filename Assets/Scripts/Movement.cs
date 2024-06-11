@@ -11,6 +11,8 @@ public class Movement : MonoBehaviour
     private float attackTime;
     [SerializeField] private float timeBetweenAttack;
     private bool canMove = true;
+    [SerializeField] Transform checkEnemy;
+    public LayerMask whatIsEnemy;
 
     void Start()
     {
@@ -55,11 +57,22 @@ public class Movement : MonoBehaviour
             {
                 rigidbody.velocity = Vector2.zero;
                 Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                mousePosition.z = 0; // Assurez-vous que la position Z est 0 pour une attaque en 2D
+
                 Vector2 attackDirection = (mousePosition - transform.position).normalized;
+
+                Debug.Log($"Mouse Position: {mousePosition}");
+                Debug.Log($"Player Position: {transform.position}");
+                Debug.Log($"Calculated Attack Direction: {attackDirection}");
 
                 anim.SetFloat("attackDirectionX", attackDirection.x);
                 anim.SetFloat("attackDirectionY", attackDirection.y);
                 anim.SetTrigger("attack");
+
+                Debug.Log($"Set Animator Parameters: attackDirectionX = {attackDirection.x}, attackDirectionY = {attackDirection.y}");
+
+                // Update checkEnemy position based on attack direction
+                checkEnemy.position = transform.position + (Vector3)attackDirection;
 
                 StartCoroutine(Delay());
 
@@ -72,6 +85,17 @@ public class Movement : MonoBehaviour
 
                 attackTime = Time.time + timeBetweenAttack;
             }
+        }
+    }
+
+
+    public void OnAttack()
+    {
+        Collider2D[] enemy = Physics2D.OverlapCircleAll(checkEnemy.position, 0.5f, whatIsEnemy);
+
+        foreach(var enemy_ in enemy)
+        {
+            //
         }
     }
 }

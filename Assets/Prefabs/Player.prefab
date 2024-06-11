@@ -161,6 +161,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   timeBetweenAttack: 0.5
+  checkEnemy: {fileID: 9138652703495741955}
+  whatIsEnemy:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!61 &-4414254595350499722
 BoxCollider2D:
   m_ObjectHideFlags: 0
