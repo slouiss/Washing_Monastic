@@ -1,18 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public float speed = 5;
+    new Rigidbody2D rigidbody;
+
+
     void Start()
     {
-        
+        rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        float Horizontal = Input.GetAxis ("Horizontal");
+        float Vertical = Input.GetAxis ("Vertical");
+
+        rigidbody.velocity = new Vector2 (Horizontal * speed, Vertical * speed);
     }
 }
