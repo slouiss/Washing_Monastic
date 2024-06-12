@@ -2,11 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
+using UnityEngine.UI;
 
 public class Monster : MonoBehaviour
 {
     [Header("Stats")]
     [SerializeField] float speed;
+    public int Health;
+    public int HealthMax;
+
+
     private float playerDetectTime;
     public float playerDetectRate;
     public float chaseRange;
@@ -30,6 +35,11 @@ public class Monster : MonoBehaviour
     int currentWaypoint = 0;
     bool reachEndPath = false;
     Seeker seeker;
+
+    public Image bar;
+
+
+
 
     private void Awake()
     {
@@ -162,5 +172,22 @@ public class Monster : MonoBehaviour
         {
             player.GetComponent<PlayerController>().TakeDamage(damage);
         }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        Health -= damage;
+        UpdateHealthBar(Health);
+
+        if (Health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+
+    public void UpdateHealthBar(int value)
+    {
+        bar.fillAmount = (float)value / HealthMax;
     }
 }
