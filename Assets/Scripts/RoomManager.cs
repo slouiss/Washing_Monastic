@@ -1,13 +1,17 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using UnityEngine.Events;
+using Pathfinding; // Ajoutez ceci
 
 public class RoomManager : MonoBehaviour
 {
     [SerializeField] GameObject roomPrefab;
-    [SerializeField] Material bossRoomMaterial; // Material for boss room walls
-
-    float roomWidth = 17.2F;
+    [SerializeField] GameObject monsterPrefab; 
+    [SerializeField] TileBase bossRoomWallTile;
+    [SerializeField] TileBase bossRoomFloorTile;
+    [SerializeField] private int maxMonstersPerRoom = 5;
+    float roomWidth = 17F;
     int roomHeight = 9;
     int gridSizeX = 10;
     int gridSizeY = 10;
@@ -60,6 +64,10 @@ public class RoomManager : MonoBehaviour
             Debug.Log($"Generation complete, {roomCount} rooms.");
             IdentifyAndMarkBossRoom();
             generationComplete = true;
+
+            // Scan the graph after generation is complete
+            AstarPath.active.Scan();
+
             OnGenerationComplete?.Invoke();
         }
     }
@@ -131,6 +139,13 @@ public class RoomManager : MonoBehaviour
 
         OpenDoors(newRoom, x, y);
 
+        // Generate monsters in the room
+        int monsterCount = Random.Range(1, maxMonstersPerRoom + 1);
+        for (int i = 0; i < monsterCount; i++)
+        {
+            InstantiateMonster(newRoom.transform);
+        }
+
         return true;
     }
 
@@ -156,14 +171,39 @@ public class RoomManager : MonoBehaviour
             GameObject bossRoom = potentialBossRooms[Random.Range(0, potentialBossRooms.Count)];
             bossRoom.tag = "RoomBoss";
 
-            // Change the color of the boss room's walls
-            var walls = bossRoom.GetComponentsInChildren<Renderer>();
-            foreach (var wall in walls)
+            // Change the tiles of the boss room's Tilemaps
+            var tilemaps = bossRoom.GetComponentsInChildren<Tilemap>();
+            foreach (var tilemap in tilemaps)
             {
-                wall.material = bossRoomMaterial;
+                if (tilemap.tag == "WallTilemap" || tilemap.tag == "Door_l" || tilemap.tag == "Door_r" || tilemap.tag == "Door_t" || tilemap.tag == "Door_b")
+                {
+                    ChangeTiles(tilemap, bossRoomWallTile);
+                }
+                else if (tilemap.tag == "GroundTilemap")
+                {
+                    ChangeTiles(tilemap, bossRoomFloorTile);
+                }
             }
 
             Debug.Log("Boss room marked at: " + bossRoom.GetComponent<Room>().RoomIndex);
+        }
+    }
+
+    private void ChangeTiles(Tilemap tilemap, TileBase newTile)
+    {
+        BoundsInt bounds = tilemap.cellBounds;
+        TileBase[] allTiles = tilemap.GetTilesBlock(bounds);
+        for (int x = 0; x < bounds.size.x; x++)
+        {
+            for (int y = 0; y < bounds.size.y; y++)
+            {
+                Vector3Int localPlace = (new Vector3Int(x, y, 0));
+                Vector3Int place = new Vector3Int(bounds.x + localPlace.x, bounds.y + localPlace.y, 0);
+                if (allTiles[x + y * bounds.size.x] != null)
+                {
+                    tilemap.SetTile(place, newTile);
+                }
+            }
         }
     }
 
@@ -198,9 +238,9 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    private Room GetRoomScriptAt(Vector2Int index)
+    Room GetRoomScriptAt(Vector2Int index)
     {
-        GameObject roomObject = roomObjects.Find(r => r.GetComponent<Room>().RoomIndex == index);
+        var roomObject = roomObjects.Find(r => r.GetComponent<Room>().RoomIndex == index);
         if (roomObject != null)
         {
             return roomObject.GetComponent<Room>();
@@ -218,8 +258,23 @@ public class RoomManager : MonoBehaviour
         var initialRoom = Instantiate(roomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
         initialRoom.name = $"Room-{roomCount}";
         initialRoom.GetComponent<Room>().RoomIndex = roomIndex;
-        initialRoom.tag = "SpawnRoom"; // Tag the initial room as "SpawnRoom"
+        initialRoom.tag = "SpawnRoom";
         roomObjects.Add(initialRoom);
+    }
+
+    private void InstantiateMonster(Transform roomTransform)
+    {
+        float roomWidth = 17.2f;
+        float roomHeight = 9f;
+        float wallThickness = 1f;
+
+        Vector3 randomPosition = new Vector3(
+            Random.Range(-roomWidth / 2 + wallThickness, roomWidth / 2 - wallThickness),
+            Random.Range(-roomHeight / 2 + wallThickness, roomHeight / 2 - wallThickness),
+            0);
+
+        var monster = Instantiate(monsterPrefab, roomTransform);
+        monster.transform.localPosition = randomPosition;
     }
 
     private void OnDrawGizmos()

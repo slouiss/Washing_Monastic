@@ -4,9 +4,16 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Door_t
+  - Door_l
+  - Door_r
   - TriggerLine
+  - Monster
   - RoomBoss
   - SpawnRoom
+  - WallTilemap
+  - GroundTilemap
+  - Door_b
   layers:
   - Default
   - TransparentFX
@@ -14,10 +21,10 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Mobs
+  - Wall
+  - GroundWall
   - 
   - 
   - 
@@ -43,4 +50,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Ground
+    uniqueID: 2628184077
+    locked: 0
+  - name: Room
+    uniqueID: 1302450947
+    locked: 0
+  - name: Entity
+    uniqueID: 3843483223
     locked: 0
