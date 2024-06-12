@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.Events;
+using Pathfinding; // Ajoutez ceci
 
 public class RoomManager : MonoBehaviour
 {
@@ -63,6 +64,10 @@ public class RoomManager : MonoBehaviour
             Debug.Log($"Generation complete, {roomCount} rooms.");
             IdentifyAndMarkBossRoom();
             generationComplete = true;
+
+            // Scan the graph after generation is complete
+            AstarPath.active.Scan();
+
             OnGenerationComplete?.Invoke();
         }
     }
@@ -233,9 +238,9 @@ public class RoomManager : MonoBehaviour
         }
     }
 
-    private Room GetRoomScriptAt(Vector2Int index)
+    Room GetRoomScriptAt(Vector2Int index)
     {
-        GameObject roomObject = roomObjects.Find(r => r.GetComponent<Room>().RoomIndex == index);
+        var roomObject = roomObjects.Find(r => r.GetComponent<Room>().RoomIndex == index);
         if (roomObject != null)
         {
             return roomObject.GetComponent<Room>();
@@ -253,13 +258,12 @@ public class RoomManager : MonoBehaviour
         var initialRoom = Instantiate(roomPrefab, GetPositionFromGridIndex(roomIndex), Quaternion.identity);
         initialRoom.name = $"Room-{roomCount}";
         initialRoom.GetComponent<Room>().RoomIndex = roomIndex;
-        initialRoom.tag = "SpawnRoom"; // Tag the initial room as "SpawnRoom"
+        initialRoom.tag = "SpawnRoom";
         roomObjects.Add(initialRoom);
     }
 
     private void InstantiateMonster(Transform roomTransform)
     {
-        // Get the boundaries of the room for random position generation
         float roomWidth = 17.2f;
         float roomHeight = 9f;
         float wallThickness = 1f;
@@ -269,7 +273,6 @@ public class RoomManager : MonoBehaviour
             Random.Range(-roomHeight / 2 + wallThickness, roomHeight / 2 - wallThickness),
             0);
 
-        // Instantiate the monster as a child of the room
         var monster = Instantiate(monsterPrefab, roomTransform);
         monster.transform.localPosition = randomPosition;
     }

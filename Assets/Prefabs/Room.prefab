@@ -31,7 +31,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4721385786505316296}
-  - {fileID: 2550074574538595236}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2357485858920673652
@@ -62,7 +61,7 @@ GameObject:
   - component: {fileID: 4250826675912350277}
   - component: {fileID: 8389701920647534650}
   - component: {fileID: 8432939327528948998}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Wall
   m_TagString: WallTilemap
   m_Icon: {fileID: 0}
@@ -683,7 +682,7 @@ GameObject:
   - component: {fileID: 7591716676968833207}
   - component: {fileID: 7284524433449772953}
   - component: {fileID: 4927170868454235847}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Door_T
   m_TagString: Door_t
   m_Icon: {fileID: 0}
@@ -872,93 +871,6 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
---- !u!1 &2365609595375156030
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2550074574538595236}
-  - component: {fileID: 927108690116412511}
-  m_Layer: 0
-  m_Name: A*
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2550074574538595236
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2365609595375156030}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -15.907566, y: -5.0627, z: -3.1477594}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5621388090750546042}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &927108690116412511
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2365609595375156030}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78396926cbbfc4ac3b48fc5fc34a87d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 1
-  data:
-    dataString: UEsDBBQAAAgIAAAIIexrnG16eAIAADAFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVMty2jAU/RVG68LYDo/QXWsI6YKECe1k440sX2MNsuSR5ADJ8O+9km3sUjbI577OObr2F+HSVMCs0hvNs63KgHwfEXcm30Z98BnO9KDknn9Cl/POM1u4JOpz3qjlCvHQlRlVgtWc/ZAH4ZIDBGvJc6XLdXaAWBlrEM6pMIAhrayrlgh9jcgZ/8ZLV3LBU7Rwp088LYPRFY8MpAU9SI0mAf7CWTRvS6aTmUOitu5xEkzns4f5ehwsfIdaMkHLCjInp28ULroGy6XPk6i0TXGqmBKCm5YmsZfK2xDTytQoEhMyTlG25xZMZggUwA+FdSKG5a95bsC2rmh6WXGN/jV9yU/VmFpSc2yofVBRu0nzqSfV9Nz+Fx6HPpxrVT53Y8PAjbAFZ8c3emHU2IHpQ3jVMw+9QScqjjQV8F6AfFEbrWqZYdDq2pXWBqJV/3hTFhfAjj3eUL0D66p3vLvj7oadhqsXf44FL1Nv5LQB9kJ5w/1igMar+YWE/dqYtgWijsUfA7/pYbhfbeCJa2Mx1KqUjl6qau1Sydp75tTUNlZagodb0hVIKuxlh23s/Q3exQZj7yJP1L1J7fA21r0gdyUe7vOD4C60U6fbZZlCnbZgitfaCi6hJ+0CL+hTrKRsFmzoSVe2r3VO2aDsUPPs39UiOYvm6WM+pyGDYJEux/ThkUbLBYU0mE7TPCd+97hEnVTsGqKtPXhrsm8ucc+6D8xoo2nllz3T9LThn6UaWM5lrvZMA8jXpsONOGgcgq9lts44GrQHa7n0902+EiIUO0KW3BolXun6bDVN+i4JqfiHsg5JSOy/KAlx8G2Xdxo+OJzc8K7ZlVz/AlBLAwQUAAAICAAACCHsBkgR4m0AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNdRUEovSizIKAaKGII4pZkpIHa0UlqykVmSRZpZomFyqoF5kqVuorFFopGleWJqkoGJSVJamlIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAACCHsa5xtengCAAAwBQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAACCHsBkgR4m0AAAB4AAAACQAkAAAAAAAAAAAAAADFAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAH0DAAAAAA==
-    upgradeData: 
-    file_cachedStartup: {fileID: 0}
-    data_cachedStartup: 
-    cacheStartup: 0
-  showNavGraphs: 1
-  showUnwalkableNodes: 1
-  debugMode: 0
-  debugFloor: 0
-  debugRoof: 1
-  manualDebugFloorRoof: 0
-  showSearchTree: 0
-  unwalkableNodeDebugSize: 0.3
-  logPathResults: 1
-  maxNearestNodeDistance: 100
-  scanOnStartup: 1
-  fullGetNearestSearch: 0
-  prioritizeGraphs: 0
-  prioritizeGraphsLimit: 1
-  colorSettings:
-    _SolidColor: {r: 0.11764706, g: 0.4, b: 0.7882353, a: 0.9}
-    _UnwalkableNode: {r: 1, g: 0, b: 0, a: 0.5}
-    _BoundsHandles: {r: 0.29, g: 0.454, b: 0.741, a: 0.9}
-    _ConnectionLowLerp: {r: 0, g: 1, b: 0, a: 0.5}
-    _ConnectionHighLerp: {r: 1, g: 0, b: 0, a: 0.5}
-    _MeshEdgeColor: {r: 0, g: 0, b: 0, a: 0.5}
-    _AreaColors:
-    - {r: 0, g: 0, b: 0, a: 0}
-  tagNames: []
-  heuristic: 2
-  heuristicScale: 1
-  threadCount: 1
-  maxFrameTime: 1
-  batchGraphUpdates: 0
-  graphUpdateBatchingInterval: 0.2
-  euclideanEmbedding:
-    mode: 0
-    seed: 0
-    pivotPointRoot: {fileID: 0}
-    spreadOutCount: 1
-  showGraphs: 1
 --- !u!1 &2632665149667267271
 GameObject:
   m_ObjectHideFlags: 0
@@ -970,7 +882,8 @@ GameObject:
   - component: {fileID: 5431005682796010273}
   - component: {fileID: 4364624891582828425}
   - component: {fileID: 7857535125361621507}
-  m_Layer: 7
+  - component: {fileID: 7986594298369315177}
+  m_Layer: 9
   m_Name: door_ground
   m_TagString: GroundTilemap
   m_Icon: {fileID: 0}
@@ -1183,6 +1096,42 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
+--- !u!19719996 &7986594298369315177
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2632665149667267271}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0
+  m_UseDelaunayMesh: 0
 --- !u!1 &4036323697404535755
 GameObject:
   m_ObjectHideFlags: 0
@@ -2619,7 +2568,7 @@ GameObject:
   - component: {fileID: 2725694652374051206}
   - component: {fileID: 6393867917215201935}
   - component: {fileID: 5799034528256619428}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Door_L
   m_TagString: Door_l
   m_Icon: {fileID: 0}
@@ -2820,7 +2769,7 @@ GameObject:
   - component: {fileID: 5376821380007642216}
   - component: {fileID: 5665668187383967692}
   - component: {fileID: 4246344985376170096}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Door_R
   m_TagString: Door_r
   m_Icon: {fileID: 0}
@@ -3072,7 +3021,7 @@ GameObject:
   - component: {fileID: 8661911789651840329}
   - component: {fileID: 8523667097120470003}
   - component: {fileID: 2998171896164271766}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Door_B
   m_TagString: Door_b
   m_Icon: {fileID: 0}
