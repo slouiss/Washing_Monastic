@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 5f;
@@ -9,11 +9,13 @@ public class PlayerController : MonoBehaviour
 
     [Header("Attack")]
     private float attackTime;
-    public float currentHealth;
+    public int currentHealth;
+    public int maxHealth;
     [SerializeField] private float timeBetweenAttack;
     private bool canMove = true;
     [SerializeField] Transform checkEnemy;
     public LayerMask whatIsEnemy;
+    //public Image bar;
 
     void Start()
     {
@@ -43,54 +45,47 @@ public class PlayerController : MonoBehaviour
 
         rigidbody.velocity = new Vector2(horizontal * speed, vertical * speed);
 
-        if (horizontal != 0 || vertical != 0)
-        {
-            anim.SetFloat("inputX", horizontal);
-            anim.SetFloat("inputY", vertical);
-        }
+        anim.SetFloat("inputX", horizontal);
+        anim.SetFloat("inputY", vertical);
+        anim.SetBool("isMoving", horizontal != 0 || vertical != 0);
     }
 
     private void OnAttack()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && Time.time >= attackTime)
         {
-            if (Time.time >= attackTime)
+            rigidbody.velocity = Vector2.zero;
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePosition.z = 0;
+
+            Vector2 attackDirection = (mousePosition - transform.position).normalized;
+
+            anim.SetFloat("attackDirectionX", attackDirection.x);
+            anim.SetFloat("attackDirectionY", attackDirection.y);
+            anim.SetTrigger("attack");
+
+            checkEnemy.position = transform.position + (Vector3)attackDirection;
+
+            StartCoroutine(Delay());
+
+            IEnumerator Delay()
             {
-                rigidbody.velocity = Vector2.zero;
-                Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                mousePosition.z = 0; // Assurez-vous que la position Z est 0 pour une attaque en 2D
-
-                Vector2 attackDirection = (mousePosition - transform.position).normalized;
-
-                Debug.Log($"Mouse Position: {mousePosition}");
-                Debug.Log($"Player Position: {transform.position}");
-                Debug.Log($"Calculated Attack Direction: {attackDirection}");
-
-                anim.SetFloat("attackDirectionX", attackDirection.x);
-                anim.SetFloat("attackDirectionY", attackDirection.y);
-                anim.SetTrigger("attack");
-
-                Debug.Log($"Set Animator Parameters: attackDirectionX = {attackDirection.x}, attackDirectionY = {attackDirection.y}");
-
-                // Update checkEnemy position based on attack direction
-                checkEnemy.position = transform.position + (Vector3)attackDirection;
-
-                StartCoroutine(Delay());
-
-                IEnumerator Delay()
-                {
-                    canMove = false;
-                    yield return new WaitForSeconds(0.3f);
-                    canMove = true;
-                }
-
-                attackTime = Time.time + timeBetweenAttack;
+                canMove = false;
+                yield return new WaitForSeconds(0.3f);
+                canMove = true;
             }
+
+            attackTime = Time.time + timeBetweenAttack;
         }
     }
 
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
 
-    public void TakeDamage(int damage){
-        currentHealth = currentHealth-damage;
-    }
+        if (currentHealth <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }  
 }
