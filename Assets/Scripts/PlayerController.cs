@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Attack")]
     private float attackTime;
+    public float currentHealth;
     [SerializeField] private float timeBetweenAttack;
     private bool canMove = true;
     [SerializeField] Transform checkEnemy;
@@ -26,7 +27,7 @@ public class PlayerController : MonoBehaviour
         {
             Move();
         }
-        Attack();
+        OnAttack();
     }
 
     void Move()
@@ -49,7 +50,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Attack()
+    private void OnAttack()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -86,5 +87,10 @@ public class PlayerController : MonoBehaviour
                 attackTime = Time.time + timeBetweenAttack;
             }
         }
+    }
+
+
+    public void TakeDamage(int damage){
+        currentHealth = currentHealth-damage;
     }
 }

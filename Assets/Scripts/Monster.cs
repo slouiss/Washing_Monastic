@@ -16,10 +16,13 @@ public class Monster : MonoBehaviour
     [SerializeField] int damage;
     [SerializeField] float attackRate;
     private float lastAttackTime;
+    public Transform AttackPoint;
+    public LayerMask playerLayerMask;
 
     [Header("Component")]
     Rigidbody2D rb;
     private PlayerController targetPlayer;
+    Animator anim;
 
     [Header("Pathfinding")]
     public float nextWaypointDistance = 2f;
@@ -32,6 +35,7 @@ public class Monster : MonoBehaviour
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     private void Start()
@@ -74,8 +78,9 @@ public class Monster : MonoBehaviour
             {
                 rb.velocity = Vector2.zero;
                 lastAttackTime = Time.time;
-                // Ajoutez ici le code d'attaque
+                anim.SetTrigger("attack");
             }
+
             else if (dist > attackRange)
             {
                 if (path == null)
@@ -131,6 +136,7 @@ public class Monster : MonoBehaviour
                             {
                                 targetPlayer = null;
                                 rb.velocity = Vector2.zero;
+                                anim.SetBool("OnMove", false);
                             }
                         }
                         else if (dist < chaseRange)
@@ -139,10 +145,22 @@ public class Monster : MonoBehaviour
                             {
                                 targetPlayer = player;
                             }
+                            anim.SetBool("OnMove", true);
+
                         }
                     }
                 }
             }
+        }
+    }
+
+    void Attack()
+    {
+        Collider2D player = Physics2D.OverlapCircle(AttackPoint.transform.position, 0.5f, playerLayerMask);
+
+        if (player != null && player.tag == "Player")
+        {
+            player.GetComponent<PlayerController>().TakeDamage(damage);
         }
     }
 }

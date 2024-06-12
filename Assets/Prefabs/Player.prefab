@@ -160,6 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  currentHealth: 20
   timeBetweenAttack: 0.5
   checkEnemy: {fileID: 9138652703495741955}
   whatIsEnemy:

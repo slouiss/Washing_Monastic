@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8597299358816251797}
   - component: {fileID: 1328985219308930438}
   - component: {fileID: 2259395747523686880}
+  - component: {fileID: 1020261755809305398}
   m_Layer: 7
   m_Name: Demon 1
   m_TagString: Monster
@@ -35,7 +36,8 @@ Transform:
   m_LocalPosition: {x: 5.569, y: 0.328, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4177511022332402149}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &9150603088682209343
@@ -367,10 +369,66 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bec4320058c46a41a89c0d1ef27ed5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 150
+  speed: 200
   playerDetectRate: 0.2
-  chaseRange: 5
+  chaseRange: 2
   attackRange: 1
-  damage: 0
+  damage: 5
   attackRate: 2
+  AttackPoint: {fileID: 4177511022332402149}
+  playerLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
   nextWaypointDistance: 2
+--- !u!95 &1020261755809305398
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144859505849466584}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ac08a7dce97d69342a18b313418cd4ec, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &4532835807125381360
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4177511022332402149}
+  m_Layer: 7
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4177511022332402149
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4532835807125381360}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.689, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4124987004885626336}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
